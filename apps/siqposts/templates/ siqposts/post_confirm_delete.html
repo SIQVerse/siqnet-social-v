@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Post | SIQNet Social V</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Confirm Deletion</h2>
+        <p>Are you sure you want to delete the post titled <strong>{{ post.title }}</strong>?</p>
+        <button type="submit">Yes, Delete</button>
+        <p><a href="{% url 'post_detail' post.id %}">Cancel</a></p>
+    </form>
+</body>
+</html>
