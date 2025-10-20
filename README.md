@@ -28,26 +28,26 @@ At the heart of SIQNet lies the **Silence Intelligence Quotient (SIQ)** — a me
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Django (Python)
-- **Frontend**: React (JavaScript)
-- **Database**: PostgreSQL
-- **Deployment**: Railway
+- **Backend**: Django (Python)  
+- **Frontend**: React (JavaScript)  
+- **Database**: PostgreSQL  
+- **Deployment**: Railway  
 
 ---
 
 ## ⚙️ Installation & Setup
 
-### Backend (Django)
+### 🔹 Backend (Django)
 ```bash
-# Clone the repo
+# Clone the repository
 git clone https://github.com/SIQVerse/siqnet-social-v.git
 cd siqnet-social-v
 
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
 
 # Run migrations
 python manage.py migrate
 
-# Start server
+# Start the development server
 python manage.py runserver
