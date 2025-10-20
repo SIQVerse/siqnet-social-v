@@ -1,0 +1,58 @@
+siqnet-social-v/
+├── siqnet_backend/              # Django project root
+│   ├── __init__.py              # Marks this as a Python package
+│   ├── settings.py              # Production-ready Django settings
+│   ├── urls.py                  # Root URL routing
+│   ├── wsgi.py                  # WSGI entry point for Gunicorn
+│   ├── asgi.py                  # ASGI entry point for async support
+│
+├── manage.py                    # Django CLI entry point
+├── requirements.txt             # Python dependencies
+├── .env                         # Environment variables (used in settings.py)
+│
+├── apps/                        # Modular Django apps
+│   ├── userauth/                # Authentication and user profiles
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   ├── urls.py
+│   │   ├── forms.py
+│   │   └── templates/
+│   │       └── userauth/
+│   │           ├── login.html
+│   │           ├── register.html
+│   │           └── profile.html
+│   └── siqposts/                # Civic posts and content
+│       ├── models.py
+│       ├── views.py
+│       ├── urls.py
+│       └── templates/
+│           └── siqposts/
+│               └── post_list.html
+│
+├── static/                      # Static assets (served via WhiteNoise)
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── media/                       # Media uploads (configured in settings.py)
+│
+├── templates/                   # Global templates
+│   └── base.html
+│
+├── client/                      # React frontend
+│   ├── public/                  # Static public files
+│   │   ├── index.html
+│   │   ├── favicon.ico
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src/                     # React source code
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   └── components/
+│   ├── package.json             # React dependencies
+│   ├── package-lock.json
+│   └── README.md                # Frontend documentation
+│
+├── .gitignore                   # Git exclusions
+├── runtime.txt                  # Python version (e.g., python-3.11.6)
+├── Procfile                     # Gunicorn entry point (optional for Railway)
