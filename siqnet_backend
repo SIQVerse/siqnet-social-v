@@ -1,9 +1,56 @@
-siqnet_backend/
-├── __init__.py
-├── settings.py
-├── urls.py
-├── wsgi.py
-├── asgi.py
-manage.py
-requirements.txt
-render.yaml
+siqnet-social-v/
+├── siqnet_backend/              # Django project root
+│   ├── __init__.py
+│   ├── settings.py              # Django settings
+│   ├── urls.py                  # URL routing
+│   ├── wsgi.py                  # WSGI for deployment
+│   ├── asgi.py                  # ASGI for async support
+│
+├── manage.py                    # Django entry point
+├── requirements.txt             # Python dependencies
+├── .env                         # Environment variables (recommended)
+│
+├── apps/                        # Django apps
+│   ├── userauth/
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   ├── urls.py
+│   │   ├── forms.py
+│   │   └── templates/
+│   │       └── userauth/
+│   │           ├── login.html
+│   │           ├── register.html
+│   │           └── profile.html
+│   └── siqposts/
+│       ├── models.py
+│       ├── views.py
+│       ├── urls.py
+│       └── templates/
+│           └── siqposts/
+│               └── post_list.html
+│
+├── static/                      # Static assets
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── templates/                   # Global templates
+│   └── base.html
+│
+├── client/                      # React frontend
+│   ├── public/
+│   │   ├── index.html
+│   │   ├── favicon.ico
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   └── components/
+│   ├── package.json
+│   ├── package-lock.json
+│   └── README.md
+│
+├── .gitignore                   # Git exclusions
+├── runtime.txt                  # Python version (e.g., python-3.11.6)
+├── Procfile                     # Optional: for Gunicorn deployment
