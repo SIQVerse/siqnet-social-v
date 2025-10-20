@@ -39,3 +39,13 @@ def post_edit_view(request, post_id):
     else:
         form = CivicPostForm(instance=post)
     return render(request, 'siqposts/post_form.html', {'form': form, 'action': 'Edit'})
+
+@login_required
+def post_delete_view(request, post_id):
+    post = get_object_or_404(CivicPost, id=post_id)
+    if post.author != request.user:
+        return redirect('post_detail', post_id=post.id)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('post_list')
+    return render(request, 'siqposts/post_confirm_delete.html', {'post': post})
