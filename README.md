@@ -6,7 +6,7 @@
 
 ## 🧘🏿 The Zulu Principle of Communicative Silence
 
-SIQNet is rooted in **The Zulu Principle of Communicative Silence** — a philosophy of intentional withdrawal from noise to cultivate clarity, power, and presence. This principle guides the platform’s architecture and its founder’s digital strategy: silence before impact, reflection before revelation. SIQNet emerges not as a reaction, but as a declaration.
+SIQNet is rooted in the Zulu Principle of Communicative Silence — a philosophy of intentional withdrawal from noise to cultivate clarity, power, and presence. This principle guides the platform’s architecture and its founder’s digital strategy: silence before impact, reflection before revelation. SIQNet emerges not as a reaction, but as a declaration.
 
 ---
 
@@ -26,21 +26,28 @@ At the heart of SIQNet lies the **Silence Intelligence Quotient (SIQ)** — a me
 
 ---
 
-## 📣 License & Contribution
+## 🛠️ Tech Stack
 
-SIQNet is open to contributors aligned with its mission of civic empowerment and digital sovereignty. Licensing terms will be updated to reflect principles of African innovation and ethical technology.
+- **Backend**: Django (Python)
+- **Frontend**: React (JavaScript)
+- **Database**: PostgreSQL
+- **Deployment**: Railway
 
 ---
 
-## 🧭 Founder’s Note
+## ⚙️ Installation & Setup
 
-When COVID-19 broke out, the world was forced into silence. Schools closed. Borders shut. Public spaces emptied. Travel halted. Physical contact became a risk, and isolation became the norm. In that global stillness, the founder of SIQNet began listening — not to noise, but to the **messages within silence**.
+### Backend (Django)
+```bash
+# Clone the repo
+git clone https://github.com/SIQVerse/siqnet-social-v.git
+cd siqnet-social-v
 
-The pandemic exposed a critical truth: the world lacked platforms for closure, connection, and community during times of crisis. But even more devastating was the spread of **unverified misinformation**. Panic surged. People made decisions based on fear, not facts. Lives were lost — not just to the virus, but to confusion, distrust, and digital chaos.
+# Install dependencies
+pip install -r requirements.txt
 
-**SIQNet was born from that silence.** A sovereign civic tech platform designed to restore connection, empower voices, and build bridges even when the world shuts down. It is a response to isolation, a tool for resilience, and a declaration of digital sovereignty. It is also a commitment to **verified truth** — to ensure that in future crises, communities are informed, not misled.
+# Run migrations
+python manage.py migrate
 
-Since then, the founder has embraced digital silence — stepping away from social media’s daily noise to build something deeper.  
-**When SIQNet goes live, the silence will break. The link will drop. And the world will feel the BOOOOOOM.**
-
-**Now, the world will relate. The world will remember. The world will relive the experience of life during and after COVID-19 — and rise.**
+# Start server
+python manage.py runserver
