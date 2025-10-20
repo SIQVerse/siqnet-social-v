@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ action }} Post | SIQNet Social V</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>{{ action }} Civic Post</h2>
+        {{ form.as_p }}
+        <button type="submit">{{ action }} Post</button>
+        <p><a href="{% url 'post_list' %}">← Back to Posts</a></p>
+    </form>
+</body>
+</html>
