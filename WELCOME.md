@@ -33,7 +33,7 @@ At the heart of SIQNet lies the **Silence Intelligence Quotient (SIQ)** — a me
 | VillageNet                | Rural digitization, chiefdom dashboards, and oral history archives      |
 | UbuntuNet                 | Community builders, healers, and Ubuntu curriculum                      |
 | FaithNet                  | Interfaith dialogue, spiritual campaigns, and verified leaders          |
-| JusticeNet               | Legal support, civic case tracking, and verified lawyers                |
+| JusticeNet                | Legal support, civic case tracking, and verified lawyers                |
 | ParliamentNet             | Legislative dashboards, bill tracking, and verified MPs                 |
 | ElectionNet               | Voter education, candidate profiles, and civic debate rooms             |
 | DiasporaNet               | Global African diaspora engagement and reintegration                    |
@@ -48,4 +48,16 @@ At the heart of SIQNet lies the **Silence Intelligence Quotient (SIQ)** — a me
 | CivicAwardsNet            | Recognition of civic excellence across networks                         |
 | ConstitutionNet           | Legal literacy, annotated constitutions, and civic law education        |
 | PeaceNet                  | Conflict resolution, peacebuilding campaigns, and interfaith dialogue   |
-| MigrationNet              | Refugee coordination, diaspora reintegration, and migration policy
+| MigrationNet              | Refugee coordination, diaspora reintegration, and migration policy      |
+| DisasterNet               | Emergency response, relief coordination, and resilience curriculum      |
+| CivicFundingNet           | Donor portals, campaign financing, and budget transparency              |
+| EthicsNet                 | Civic ethics, integrity education, and moral leadership                 |
+| CivicInnovationNet        | Hackathons, pilot programs, and grassroots problem-solving              |
+| PolicyNet                 | Civic policy publishing, feedback, and implementation dashboards        |
+| FamilyNet                 | Parenting support, emotional wellness, and intergenerational dialogue   |
+| CivicSpiritualityNet      | Spiritual reflection, civic meditation, and philosophical curriculum    |
+| CivicMentorshipNet        | Verified mentors, youth guidance, and leadership circles                |
+| CivicJusticeNet           | Restorative justice, community healing, and reconciliation              |
+| CivicArtsNet              | Public art campaigns, exhibitions, and civic storytelling               |
+| DigitalCitizenshipNet     | Digital rights, responsibilities, and civic tech ethics                 |
+| RegionalCollaborationNet  | Cross-border coalitions, treaties, and regional civic unity             |
