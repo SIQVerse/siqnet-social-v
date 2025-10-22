@@ -3,15 +3,12 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "your-dev-secret-key")
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DJANGO_DEBUG", "True") == "True"
-
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
-# Application definition
+# APPLICATIONS
 INSTALLED_APPS = [
     # Django core
     'django.contrib.admin',
@@ -29,26 +26,31 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    # Your apps
+    # Local apps
     'apps.userauth',
     'apps.siqposts',
 ]
 
 SITE_ID = 1
 
+# MIDDLEWARE
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Must be first for CORS
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# URLS & WSGI
 ROOT_URLCONF = 'siqnet_backend.urls'
+WSGI_APPLICATION = 'siqnet_backend.wsgi.application'
 
+# TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -65,9 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'siqnet_backend.wsgi.application'
-
-# Database
+# DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -79,37 +79,29 @@ DATABASES = {
     }
 }
 
-# Password validation
+# PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
+# INTERNATIONALIZATION
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Africa/Lusaka'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
+# STATIC & MEDIA
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# CORS setup
+# CORS
 CORS_ALLOWED_ORIGINS = os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
 
-# Default primary
+# DEFAULT PRIMARY KEY
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
