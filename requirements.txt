@@ -25,5 +25,5 @@ Pillow==10.0.1
 # CORS support
 django-cors-headers==4.3.0
 
-# Optional: Environment variable management
+# Environment variable management
 python-dotenv==1.0.0
