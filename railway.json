@@ -1,7 +1,14 @@
 {
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
-    "buildCommand": "pip install -r requirements.txt"
+    "builder": "NIXPACKS",
+    "nixpacksConfig": {
+      "phases": {
+        "install": {
+          "cmds": ["pip install -r requirements.txt"]
+        }
+      }
+    }
   },
   "deploy": {
     "runtime": "V2",
