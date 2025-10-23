@@ -18,30 +18,75 @@ coverage.xml
 local_settings.py
 .env
 .env.*
+*.secret
+*.pem
+*.key
 
 # Django static and media
 /media/
 staticfiles/
 static/
 media/
+public/
 
 # Migrations
 **/migrations/
 !**/migrations/__init__.py
 
-# === Node / React ===
+# === Django Channels / ASGI ===
+*.redis
+*.sock
+*.pid
+
+# === Node / React / Vite / Next.js ===
 node_modules/
 build/
 dist/
+.next/
+out/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 .env.local
 .env.development
 .env.production
+.env.test
+.env.preview
+.vitepress/
+.cache/
+.eslintcache
+
+# === Frontend assets ===
+*.map
+*.lock
+*.gz
+*.br
+
+# === Docker / CI / Deployment ===
+docker-compose.override.yml
+.docker/
+*.tar
+*.tgz
+*.zip
+*.bak
+*.tmp
+*.log
+*.pid
+*.pid.lock
 
 # === VS Code ===
 .vscode/
+
+# === JetBrains / IntelliJ / PyCharm ===
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# === Sublime ===
+*.sublime-project
+*.sublime-workspace
 
 # === macOS ===
 .DS_Store
@@ -54,9 +99,30 @@ desktop.ini
 *.egg-info/
 .eggs/
 MANIFEST
+build/
+dist/
+pip-wheel-metadata/
+__pypackages__/
 
-# === IDEs ===
-.idea/
-*.iml
-*.sublime-project
-*.sublime-workspace
+# === Testing / Coverage ===
+htmlcov/
+.tox/
+.pytest_cache/
+nosetests.xml
+test-results.xml
+junit.xml
+.coverage.*
+.cache/
+*.cover
+*.pytest_cache/
+tests/__snapshots__/
+
+# === Logs & Runtime ===
+*.log
+*.pid
+*.pid.lock
+*.sock
+*.redis
+*.db-journal
+*.db-wal
+*.db-shm
