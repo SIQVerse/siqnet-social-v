@@ -1,17 +1,42 @@
-const BASE_URL = "https://your-backend-domain.com"; // Replace with actual backend URL
+// 🔗 Base API URL from environment
+const BASE_URL = process.env.REACT_APP_API_URL || "https://siqnet.tech";
 
-export async function fetchPosts() {
-  const response = await fetch(`${BASE_URL}/siqposts/`, {
-    credentials: "include",
-  });
-  return await response.json();
+// 🧠 Helper: Handle API responses
+async function handleResponse(response) {
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ detail: "Unknown error" }));
+    throw new Error(error.detail || "Request failed");
+  }
+  return response.json();
 }
 
-export async function createPost(formData) {
-  const response = await fetch(`${BASE_URL}/siqposts/create/`, {
-    method: "POST",
-    body: formData,
-    credentials: "include",
-  });
-  return await response.json();
+// 📥 Fetch all posts
+export async function fetchPosts() {
+  try {
+    const response = await fetch(`${BASE_URL}/siqposts/`, {
+      credentials: "include",
+    });
+    return await handleResponse(response);
+  } catch (error) {
+    console.error("Error fetching posts:", error.message);
+    return [];
+  }
+}
+
+// 📝 Create a new post
+export async function createPost(formData, token = null) {
+  try {
+    const response = await fetch(`${BASE_URL}/siqposts/create/`, {
+      method: "POST",
+      body: formData,
+      credentials: "include",
+      headers: token
+        ? { Authorization: `Bearer ${token}` }
+        : undefined,
+    });
+    return await handleResponse(response);
+  } catch (error) {
+    console.error("Error creating post:", error.message);
+    return { error: error.message };
+  }
 }
