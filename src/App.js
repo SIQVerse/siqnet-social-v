@@ -5,18 +5,24 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="SIQNet Logo" />
+        <h1>Welcome to SIQNet</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Africa’s sovereign civic-tech operating system. Verified identity. Emotional intelligence. Community-powered governance.
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://siqnet.tech"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Explore the SIQNet Ecosystem →
         </a>
+        <div style={{ marginTop: '2rem' }}>
+          <button className="cta-button" onClick={() => alert('Coming soon: Civic Profile Creation')}>
+            Create Your Civic Profile
+          </button>
+        </div>
       </header>
     </div>
   );
