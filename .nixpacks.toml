@@ -6,13 +6,22 @@ nixpkgs = ["python311", "nodejs_18", "npm"]
 
 [phases.install]
 cmds = [
-  "pip install -r requirements.txt"
+  "pip install -r requirements.txt",
+  "npm install"
 ]
 
 [phases.build]
 cmds = [
-  "npm run build"
+  "npm run build",                # Build frontend assets
+  "python manage.py collectstatic --noinput",  # Collect static files
+  "python manage.py migrate"     # Apply database migrations
 ]
 
 [phases.start]
-cmd = "python3 -m gunicorn siqnet_backend.wsgi"
+cmd = """
+if [ \"$SIQNET_ENV\" = \"production\" ]; then
+  exec daphne -b 0.0.0.0 -p 8000 siqnet_backend.asgi:application
+else
+  exec gunicorn siqnet_backend.wsgi:application --bind 0.0.0.0:8000
+fi
+"""
