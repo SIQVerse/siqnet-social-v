@@ -6,14 +6,13 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "y@7ocog29jc)rjr&0(j97@fy$jf8o9t^er3ox=acxu&ervb7c_")
-DEBUG = os.getenv("DJANGO_DEBUG", "True") == "True"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "your-default-secret-key")
+DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "http://localhost:3000").split(",")
 
 # APPLICATIONS
 INSTALLED_APPS = [
-    # Django core
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,14 +21,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    # Third-party
     'corsheaders',
     'rest_framework',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    # Local apps
     'apps.userauth',
     'apps.siqposts',
 ]
@@ -40,7 +37,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Added for static file serving
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,4 +115,3 @@ LOGGING = {
         'level': 'INFO',
     },
 }
-# trigger rebuild
