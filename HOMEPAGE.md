@@ -1,54 +1,55 @@
-# 🛡️ Welcome to SIQNet
+🛡️ Welcome to SIQNet
+Africa’s sovereign civic-tech operating system. Verified identity. Emotional intelligence. Community-powered governance. Built for impact. Rooted in wisdom. Designed for the future.
 
-**Africa’s sovereign civic-tech operating system.**  
-Verified identity. Emotional intelligence. Community-powered governance.
+🌍 Explore the SIQNet Ecosystem
+Each network is a gateway to transformation:
 
----
+GovNet – Transparent ministries, public dashboards, and civic data
 
-## 🌐 Explore the Ecosystem
+YouthNet – Youth-led campaigns, mentorship, and leadership pipelines
 
-- [GovNet](#) – Ministries and public dashboards  
-- [YouthNet](#) – Youth empowerment and campaigns  
-- [ScholarNet](#) – Verified scholars and research  
-- [EntrepreneurNet](#) – Startups and innovation  
-- [UbuntuNet](#) – Community builders and healers  
-- [JusticeNet](#) – Legal support and civic justice  
-- [DiasporaNet](#) – Global African engagement  
-- [CivicAwardsNet](#) – Recognition and legacy
+ScholarNet – Verified scholars, research hubs, and academic collaboration
 
-[View Full Network Map →](#)
+EntrepreneurNet – Startups, innovation labs, and funding ecosystems
 
----
+UbuntuNet – Community builders, healers, and cultural custodians
 
-## 🧘🏿 The Zulu Principle
+JusticeNet – Legal support, civic justice, and restorative systems
 
-> *Silence before impact. Reflection before revelation.*
+DiasporaNet – Global African engagement, remittances, and return pathways
 
-SIQNet is built on the Zulu Principle of Communicative Silence — guiding leadership through clarity and presence.
+CivicAwardsNet – Recognition, legacy, and civic excellence
 
----
+🔗 View Full Network Map →
 
-## 🧠 What Is SIQ?
+🧘🏿 The Zulu Principle
+Silence before impact. Reflection before revelation.
 
-**Silence Intelligence Quotient (SIQ)** measures your ability to lead with wisdom, listen deeply, and act intentionally.
+SIQNet is guided by the Zulu Principle of Communicative Silence — a leadership philosophy rooted in clarity, presence, and intentionality.
 
----
+🧠 What Is SIQ?
+Silence Intelligence Quotient (SIQ) is a new metric for leadership: Your ability to listen deeply, act wisely, and lead with emotional clarity.
 
-## 🚀 Get Started
+SIQNet uses this principle to power civic profiles, campaign strategy, and community engagement.
 
-- [Create Your Civic Profile](#)
-- [Choose Your Network](#)
-- [Launch a Campaign](#)
-- [Join SIQVerse Chat](#)
+🚀 Get Started
+✅ Create Your Civic Profile — Verified identity, emotional signature, and social graph
 
----
+✅ Choose Your Network — Align with your purpose and community
 
-## 🫱🏽‍🫲🏿 Who Is SIQNet For?
+✅ Launch a Campaign — Mobilize support, raise awareness, and drive change
 
-- Ministries and public servants  
-- Youth leaders and scholars  
-- Diaspora visionaries  
-- NGOs and community builders  
-- Artists, healers, and educators
+✅ Join SIQVerse Chat — Real-time civic discourse and emotional intelligence exchange
 
-[Join the Movement →](#)
+🫱🏽‍🫲🏿 Who Is SIQNet For?
+Government ministries and public servants
+
+Youth leaders, scholars, and educators
+
+Diaspora visionaries and returnees
+
+NGOs, community organizers, and healers
+
+Artists, technologists, and cultural innovators
+
+🌟 Join the Movement →
