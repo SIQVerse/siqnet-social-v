@@ -13,6 +13,7 @@ CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "http://localhos
 
 # APPLICATIONS
 INSTALLED_APPS = [
+    # Core Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -21,14 +22,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    # Third-party
     'corsheaders',
     'rest_framework',
+    'channels',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
+    # SIQNet Apps
     'apps.userauth',
     'apps.siqposts',
+    'apps.messaging',
+    'apps.groups',
+    'apps.notifications',
+    'apps.analytics',
+    'apps.mediahub',
 ]
 
 SITE_ID = 1
@@ -47,9 +56,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# URLS & WSGI
+# URLS & WSGI/ASGI
 ROOT_URLCONF = 'siqnet_backend.urls'
 WSGI_APPLICATION = 'siqnet_backend.wsgi.application'
+ASGI_APPLICATION = 'siqnet_backend.asgi.application'
 
 # TEMPLATES
 TEMPLATES = [
@@ -95,8 +105,37 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Optional: Cloudinary or S3 integration
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),
+#     'API_KEY': os.getenv("CLOUDINARY_API_KEY"),
+#     'API_SECRET': os.getenv("CLOUDINARY_API_SECRET"),
+# }
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # CORS
 CORS_ALLOWED_ORIGINS = os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+
+# REST FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+# CHANNELS
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [os.getenv("REDIS_URL", "redis://localhost:6379")],
+        },
+    },
+}
 
 # DEFAULT PRIMARY KEY
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
