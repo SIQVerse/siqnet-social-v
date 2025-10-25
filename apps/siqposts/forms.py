@@ -1,23 +1,30 @@
 from django import forms
-from .models import CivicPost
+from .models import CivicPost, Comment
 
 class CivicPostForm(forms.ModelForm):
+    content = forms.CharField(
+        label="What's happening?",
+        widget=forms.Textarea(attrs={
+            'rows': 4,
+            'placeholder': 'Share your civic thoughts...',
+            'class': 'form-control'
+        })
+    )
+
     class Meta:
         model = CivicPost
-        fields = [
-            'title',
-            'content',
-            'image',
-            'video',
-            'audio',
-            'tags',
-            'visibility',
-            'post_type',
-            'location',
-        ]
-        widgets = {
-            'tags': forms.TextInput(attrs={'placeholder': 'e.g. #tech, #education'}),
-            'location': forms.TextInput(attrs={'placeholder': 'City, Region or GPS'}),
-            'visibility': forms.Select(),
-            'post_type': forms.Select(),
-        }
+        fields = ['content']
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(
+        label="Add a comment",
+        widget=forms.Textarea(attrs={
+            'rows': 2,
+            'placeholder': 'Write your comment...',
+            'class': 'form-control'
+        })
+    )
+
+    class Meta:
+        model = Comment
+        fields = ['text']
