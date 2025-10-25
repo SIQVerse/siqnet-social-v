@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Activity</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <main class="container">
+        <h2>Recent Activity</h2>
+        {% if activities %}
+            <ul>
+                {% for activity in activities %}
+                    <li>
+                        <strong>{{ activity.action }}</strong> — {{ activity.timestamp|date:"F j, Y, g:i a" }}
+                        {% if activity.metadata %}
+                            <br><small>Details: {{ activity.metadata }}</small>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No activity recorded yet.</p>
+        {% endif %}
+        <a href="{% url 'profile' %}">Back to Profile</a>
+    </main>
+</body>
+</html>
