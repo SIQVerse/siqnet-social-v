@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, ProfileEditForm
-from .models import User, CivicPost
+from .forms import RegisterForm, LoginForm, ProfileEditForm, VerificationRequestForm
+from .models import CustomUser, CivicPost, UserBadge, UserActivity, VerificationRequest
 
 def register_view(request):
     if request.method == 'POST':
@@ -19,8 +19,7 @@ def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
+            login(request, form.get_user())
             return redirect('profile')
     else:
         form = LoginForm()
@@ -32,10 +31,10 @@ def logout_view(request):
 
 @login_required
 def profile_view(request):
-    civic_posts = CivicPost.objects.filter(author=request.user).order_by('-created_at')
+    posts = CivicPost.objects.filter(author=request.user).order_by('-created_at')
     return render(request, 'userauth/profile.html', {
         'profile_user': request.user,
-        'posts': civic_posts,
+        'posts': posts,
         'is_own_profile': True,
     })
 
@@ -50,10 +49,39 @@ def profile_edit_view(request):
     return render(request, 'userauth/profile_edit.html', {'form': form})
 
 def public_profile_view(request, username):
-    profile_user = get_object_or_404(User, username=username)
-    civic_posts = CivicPost.objects.filter(author=profile_user).order_by('-created_at')
+    profile_user = get_object_or_404(CustomUser, username=username)
+    posts = CivicPost.objects.filter(author=profile_user).order_by('-created_at')
     return render(request, 'userauth/profile.html', {
         'profile_user': profile_user,
-        'posts': civic_posts,
+        'posts': posts,
         'is_own_profile': request.user == profile_user,
     })
+
+@login_required
+def account_settings_view(request):
+    return render(request, 'userauth/settings.html')
+
+@login_required
+def security_settings_view(request):
+    return render(request, 'userauth/security_settings.html')
+
+@login_required
+def verification_request_view(request):
+    if request.method == 'POST':
+        form = VerificationRequestForm(request.POST)
+        if form.is_valid():
+            VerificationRequest.objects.create(user=request.user, notes=form.cleaned_data['notes'])
+            return redirect('profile')
+    else:
+        form = VerificationRequestForm()
+    return render(request, 'userauth/verification_request.html', {'form': form})
+
+@login_required
+def user_badges_view(request):
+    badges = UserBadge.objects.filter(user=request.user).select_related('badge')
+    return render(request, 'userauth/badges.html', {'badges': badges})
+
+@login_required
+def user_activity_view(request):
+    activities = UserActivity.objects.filter(user=request.user).order_by('-timestamp')[:50]
+    return render(request, 'userauth/activity.html', {'activities': activities})
