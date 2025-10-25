@@ -6,13 +6,13 @@ import logging
 
 def main():
     """Run administrative tasks with enhanced environment awareness."""
-    # Set default settings module, allowing override via environment variable
+    # ✅ Set default settings module, allowing override via environment variable
     os.environ.setdefault(
         "DJANGO_SETTINGS_MODULE",
         os.environ.get("DJANGO_SETTINGS_MODULE", "siqnet_backend.settings")
     )
 
-    # Optional: Log environment info for debugging and deployment
+    # ✅ Log environment info for debugging and deployment
     env = os.environ.get("SIQNET_ENV", "development")
     logging.basicConfig(level=logging.INFO)
     logging.info(f"Starting SIQNet manage.py in {env} mode.")
@@ -26,11 +26,12 @@ def main():
             "forget to activate your virtual environment?"
         ) from exc
 
-    # Optional: Add profiling or debug hooks here
+    # ✅ Optional: Add profiling or debug hooks
     # if '--profile' in sys.argv:
     #     import cProfile
     #     cProfile.run('execute_from_command_line(sys.argv)')
 
+    # ✅ Run Django management command
     execute_from_command_line(sys.argv)
 
 if __name__ == "__main__":
