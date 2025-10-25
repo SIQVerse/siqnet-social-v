@@ -18,9 +18,9 @@ if os.environ.get("SIQNET_ENV") == "production":
     logging.basicConfig(level=logging.INFO)
     logging.info("WSGI application starting in production mode.")
 
-# ✅ Optional: Security headers (if using WSGI middleware)
-# from django.middleware.security import SecurityMiddleware
-# application = SecurityMiddleware(get_wsgi_application())
-
 # ✅ Final WSGI application
 application = get_wsgi_application()
+
+# ✅ Optional: Add security middleware (uncomment if needed)
+# from django.middleware.security import SecurityMiddleware
+# application = SecurityMiddleware(application)
