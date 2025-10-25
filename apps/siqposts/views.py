@@ -109,3 +109,11 @@ def comment_like_view(request, comment_id):
     else:
         comment.likes.add(request.user)
     return JsonResponse({'likes': comment.total_likes()})
+
+# ✅ Added missing view
+@login_required
+def post_view_tracker(request, post_id):
+    post = get_object_or_404(CivicPost, id=post_id)
+    post.views += 1
+    post.save()
+    return JsonResponse({'views': post.views})
