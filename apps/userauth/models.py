@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.conf import settings
 
 class CustomUser(AbstractUser):
     bio = models.TextField(blank=True)
@@ -34,3 +35,13 @@ class CustomUser(AbstractUser):
 
     def total_following(self):
         return self.following.count()
+
+
+class CivicPost(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='civic_posts')
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_public = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.author.username}: {self.content[:30]}"
