@@ -14,7 +14,7 @@ urlpatterns = [
 
     # ⚙️ Account Settings
     path('settings/', views.account_settings_view, name='account_settings'),
-    path('security/', views.security_settings_view, name='security_settings'),
+    path('settings/security/', views.security_settings_view, name='security_settings'),
 
     # 🏅 Verification & Badges
     path('verify/', views.verification_request_view, name='verification_request'),
