@@ -30,7 +30,7 @@ INSTALLED_APPS = [
 # 🧱 Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # CORS support
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,7 +97,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # 👤 Custom user model
 AUTH_USER_MODEL = 'userauth.CustomUser'
 
-# 🔁 Login/Logout redirects
+# 🔁 Authentication flow
 LOGIN_REDIRECT_URL = '/auth/profile/'
 LOGOUT_REDIRECT_URL = '/auth/login/'
 LOGIN_URL = '/auth/login/'
