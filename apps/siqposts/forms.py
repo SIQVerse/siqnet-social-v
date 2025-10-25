@@ -8,15 +8,34 @@ class CivicPostForm(forms.ModelForm):
             'rows': 4,
             'placeholder': 'Share your civic thoughts...',
             'class': 'form-control'
-        })
+        }),
+        required=False
     )
+
+    image = forms.ImageField(required=False)
+    video = forms.FileField(required=False)
+    audio = forms.FileField(required=False)
+    tags = forms.CharField(required=False)
+    visibility = forms.ChoiceField(choices=CivicPost.VISIBILITY_CHOICES, required=False)
+    post_type = forms.ChoiceField(choices=CivicPost.POST_TYPES, required=False)
 
     class Meta:
         model = CivicPost
-        fields = ['content']
+        fields = [
+            'title',
+            'content',
+            'image',
+            'video',
+            'audio',
+            'tags',
+            'visibility',
+            'post_type',
+            'location'
+        ]
+
 
 class CommentForm(forms.ModelForm):
-    text = forms.CharField(
+    content = forms.CharField(
         label="Add a comment",
         widget=forms.Textarea(attrs={
             'rows': 2,
@@ -27,4 +46,4 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ['text']
+        fields = ['content']
