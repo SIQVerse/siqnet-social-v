@@ -1,8 +1,15 @@
-from django.contrib.auth import get_user_model
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import get_user_model
 from .models import CivicPost
 
 User = get_user_model()
+
+def register_view(request):
+    """
+    Placeholder view for user registration.
+    """
+    return HttpResponse("Register page coming soon.")
 
 def profile_view(request, username):
     """
