@@ -16,7 +16,7 @@ python-decouple==3.8
 
 # === REST & API ===
 djangorestframework==3.16.1
-drf-yasg==1.21.7
+drf-yasg==1.21.7  # Swagger/OpenAPI docs
 
 # === Real-time & Channels ===
 channels==4.0.0
