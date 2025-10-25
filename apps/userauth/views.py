@@ -11,6 +11,12 @@ def register_view(request):
     """
     return HttpResponse("Register page coming soon.")
 
+def login_view(request):
+    """
+    Placeholder view for user login.
+    """
+    return HttpResponse("Login page coming soon.")
+
 def profile_view(request, username):
     """
     Display the public profile of a user along with their civic posts.
