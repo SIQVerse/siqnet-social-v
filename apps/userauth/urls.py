@@ -8,9 +8,9 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
 
     # 👤 Profile & Identity
-    path('profile/', views.profile_view, name='profile'),
+    path('profile/', views.profile_view, name='profile'),  # Current user's profile
     path('profile/edit/', views.profile_edit_view, name='profile_edit'),
-    path('profile/<str:username>/', views.public_profile_view, name='public_profile'),
+    path('profile/<str:username>/', views.public_profile_view, name='public_profile'),  # Public profile by username
 
     # ⚙️ Account Settings
     path('settings/', views.account_settings_view, name='account_settings'),
