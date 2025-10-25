@@ -21,6 +21,8 @@ INSTALLED_APPS = [
 
     # Third-party
     'corsheaders',
+    'rest_framework',
+    'drf_yasg',
 
     # Custom apps
     'apps.userauth.apps.UserAuthConfig',
@@ -120,3 +122,10 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # 🆔 Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 🔐 JWT Authentication
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
