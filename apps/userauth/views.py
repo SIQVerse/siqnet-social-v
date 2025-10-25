@@ -8,11 +8,10 @@ def profile_view(request, username):
     """
     Display the public profile of a user along with their civic posts.
     """
-    user = get_object_or_404(User, username=username)
-    posts = CivicPost.objects.filter(author=user).order_by('-created_at')
-    
-    context = {
-        'user': user,
+    profile_user = get_object_or_404(User, username=username)
+    posts = CivicPost.objects.filter(author=profile_user).order_by('-created_at')
+
+    return render(request, 'userauth/profile.html', {
+        'profile_user': profile_user,
         'posts': posts,
-    }
-    return render(request, 'userauth/profile.html', context)
+    })
