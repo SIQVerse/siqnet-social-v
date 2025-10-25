@@ -17,6 +17,12 @@ def login_view(request):
     """
     return HttpResponse("Login page coming soon.")
 
+def logout_view(request):
+    """
+    Placeholder view for user logout.
+    """
+    return HttpResponse("Logout page coming soon.")
+
 def profile_view(request, username):
     """
     Display the public profile of a user along with their civic posts.
