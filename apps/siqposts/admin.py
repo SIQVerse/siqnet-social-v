@@ -34,21 +34,21 @@ class CivicPostAdmin(admin.ModelAdmin):
     readonly_fields = ('views', 'shares', 'total_likes')
     actions = ['hide_posts', 'unhide_posts', 'flag_posts', 'unflag_posts']
 
+    @admin.action(description="Hide selected posts")
     def hide_posts(self, request, queryset):
         queryset.update(is_hidden=True)
-    hide_posts.short_description = "Hide selected posts"
 
+    @admin.action(description="Unhide selected posts")
     def unhide_posts(self, request, queryset):
         queryset.update(is_hidden=False)
-    unhide_posts.short_description = "Unhide selected posts"
 
+    @admin.action(description="Flag selected posts")
     def flag_posts(self, request, queryset):
         queryset.update(is_flagged=True)
-    flag_posts.short_description = "Flag selected posts"
 
+    @admin.action(description="Unflag selected posts")
     def unflag_posts(self, request, queryset):
         queryset.update(is_flagged=False)
-    unflag_posts.short_description = "Unflag selected posts"
 
 
 @admin.register(Comment)
@@ -76,18 +76,18 @@ class CommentAdmin(admin.ModelAdmin):
     )
     actions = ['hide_comments', 'unhide_comments', 'flag_comments', 'unflag_comments']
 
+    @admin.action(description="Hide selected comments")
     def hide_comments(self, request, queryset):
         queryset.update(is_hidden=True)
-    hide_comments.short_description = "Hide selected comments"
 
+    @admin.action(description="Unhide selected comments")
     def unhide_comments(self, request, queryset):
         queryset.update(is_hidden=False)
-    unhide_comments.short_description = "Unhide selected comments"
 
+    @admin.action(description="Flag selected comments")
     def flag_comments(self, request, queryset):
         queryset.update(is_flagged=True)
-    flag_comments.short_description = "Flag selected comments"
 
+    @admin.action(description="Unflag selected comments")
     def unflag_comments(self, request, queryset):
         queryset.update(is_flagged=False)
-    unflag_comments.short_description = "Unflag selected comments"
