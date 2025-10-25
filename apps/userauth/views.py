@@ -1,53 +1,59 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth import get_user_model
-from .models import CivicPost
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from .forms import RegisterForm, LoginForm, ProfileEditForm
+from .models import User, CivicPost
 
-User = get_user_model()
-
-# 🔐 Authentication
 def register_view(request):
-    return HttpResponse("Register page coming soon.")
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('profile')
+    else:
+        form = RegisterForm()
+    return render(request, 'userauth/register.html', {'form': form})
 
 def login_view(request):
-    return HttpResponse("Login page coming soon.")
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('profile')
+    else:
+        form = LoginForm()
+    return render(request, 'userauth/login.html', {'form': form})
 
 def logout_view(request):
-    return HttpResponse("Logout page coming soon.")
+    logout(request)
+    return redirect('login')
 
-# 👤 Profile & Identity
+@login_required
 def profile_view(request):
-    return HttpResponse("Current user's profile page coming soon.")
+    civic_posts = CivicPost.objects.filter(author=request.user).order_by('-created_at')
+    return render(request, 'userauth/profile.html', {
+        'profile_user': request.user,
+        'posts': civic_posts,
+        'is_own_profile': True,
+    })
 
+@login_required
 def profile_edit_view(request):
-    return HttpResponse("Profile edit page coming soon.")
+    form = ProfileEditForm(instance=request.user)
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    return render(request, 'userauth/profile_edit.html', {'form': form})
 
 def public_profile_view(request, username):
     profile_user = get_object_or_404(User, username=username)
     civic_posts = CivicPost.objects.filter(author=profile_user).order_by('-created_at')
-
-    context = {
+    return render(request, 'userauth/profile.html', {
         'profile_user': profile_user,
         'posts': civic_posts,
         'is_own_profile': request.user == profile_user,
-    }
-
-    return render(request, 'userauth/profile.html', context)
-
-# ⚙️ Account Settings
-def account_settings_view(request):
-    return HttpResponse("Account settings page coming soon.")
-
-def security_settings_view(request):
-    return HttpResponse("Security settings page coming soon.")
-
-# 🏅 Verification & Badges
-def verification_request_view(request):
-    return HttpResponse("Verification request page coming soon.")
-
-def user_badges_view(request):
-    return HttpResponse("User badges page coming soon.")
-
-# 📊 Activity & Analytics
-def user_activity_view(request):
-    return HttpResponse("User activity page coming soon.")
+    })
