@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
-# 👤 Custom User Model
 class User(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     location = models.CharField(max_length=100, blank=True)
@@ -11,7 +10,6 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-# 📝 Civic Post Model
 class CivicPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='civic_posts')
     content = models.TextField()
