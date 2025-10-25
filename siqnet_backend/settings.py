@@ -26,12 +26,12 @@ INSTALLED_APPS = [
     'apps.userauth.apps.UserAuthConfig',
     'apps.siqposts.apps.SiqPostsConfig',
     'apps.messaging.apps.MessagingConfig',
-    'apps.groups',
-    'apps.notifications',
-    'apps.mediahub',
-    'apps.analytics',
-    'apps.api',
-    'apps.healthcheck',
+    'apps.groups.apps.GroupsConfig',
+    'apps.notifications.apps.NotificationsConfig',
+    'apps.mediahub.apps.MediahubConfig',
+    'apps.analytics.apps.AnalyticsConfig',
+    'apps.api.apps.ApiConfig',
+    'apps.healthcheck.apps.HealthcheckConfig',
 ]
 
 # 🧱 Middleware
