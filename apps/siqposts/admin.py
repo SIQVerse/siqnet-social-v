@@ -3,6 +3,10 @@ from .models import CivicPost, Comment
 
 @admin.register(CivicPost)
 class CivicPostAdmin(admin.ModelAdmin):
+    """
+    Admin interface for CivicPost model with custom actions and display fields.
+    """
+
     list_display = (
         'title',
         'author',
@@ -10,7 +14,7 @@ class CivicPostAdmin(admin.ModelAdmin):
         'visibility',
         'created_at',
         'updated_at',
-        'total_likes',
+        'display_total_likes',
         'views',
         'shares',
         'is_flagged',
@@ -31,35 +35,47 @@ class CivicPostAdmin(admin.ModelAdmin):
         'is_flagged',
         'is_hidden',
     )
-    readonly_fields = ('views', 'shares', 'total_likes')
+    readonly_fields = ('views', 'shares', 'display_total_likes')
     actions = ['hide_posts', 'unhide_posts', 'flag_posts', 'unflag_posts']
 
+    @admin.display(description="Total Likes")
+    def display_total_likes(self, obj):
+        return obj.total_likes()
+
+    @admin.action(description="Hide selected posts")
     def hide_posts(self, request, queryset):
-        queryset.update(is_hidden=True)
-    hide_posts.short_description = "Hide selected posts"
+        updated = queryset.update(is_hidden=True)
+        self.message_user(request, f"{updated} post(s) hidden.")
 
+    @admin.action(description="Unhide selected posts")
     def unhide_posts(self, request, queryset):
-        queryset.update(is_hidden=False)
-    unhide_posts.short_description = "Unhide selected posts"
+        updated = queryset.update(is_hidden=False)
+        self.message_user(request, f"{updated} post(s) unhidden.")
 
+    @admin.action(description="Flag selected posts")
     def flag_posts(self, request, queryset):
-        queryset.update(is_flagged=True)
-    flag_posts.short_description = "Flag selected posts"
+        updated = queryset.update(is_flagged=True)
+        self.message_user(request, f"{updated} post(s) flagged.")
 
+    @admin.action(description="Unflag selected posts")
     def unflag_posts(self, request, queryset):
-        queryset.update(is_flagged=False)
-    unflag_posts.short_description = "Unflag selected posts"
+        updated = queryset.update(is_flagged=False)
+        self.message_user(request, f"{updated} post(s) unflagged.")
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
+    """
+    Admin interface for Comment model with moderation actions and reply detection.
+    """
+
     list_display = (
         'author',
         'post',
         'created_at',
         'updated_at',
-        'is_reply',
-        'total_likes',
+        'display_is_reply',
+        'display_total_likes',
         'is_flagged',
         'is_hidden',
     )
@@ -76,18 +92,30 @@ class CommentAdmin(admin.ModelAdmin):
     )
     actions = ['hide_comments', 'unhide_comments', 'flag_comments', 'unflag_comments']
 
+    @admin.display(description="Is Reply")
+    def display_is_reply(self, obj):
+        return obj.is_reply()
+
+    @admin.display(description="Total Likes")
+    def display_total_likes(self, obj):
+        return obj.total_likes()
+
+    @admin.action(description="Hide selected comments")
     def hide_comments(self, request, queryset):
-        queryset.update(is_hidden=True)
-    hide_comments.short_description = "Hide selected comments"
+        updated = queryset.update(is_hidden=True)
+        self.message_user(request, f"{updated} comment(s) hidden.")
 
+    @admin.action(description="Unhide selected comments")
     def unhide_comments(self, request, queryset):
-        queryset.update(is_hidden=False)
-    unhide_comments.short_description = "Unhide selected comments"
+        updated = queryset.update(is_hidden=False)
+        self.message_user(request, f"{updated} comment(s) unhidden.")
 
+    @admin.action(description="Flag selected comments")
     def flag_comments(self, request, queryset):
-        queryset.update(is_flagged=True)
-    flag_comments.short_description = "Flag selected comments"
+        updated = queryset.update(is_flagged=True)
+        self.message_user(request, f"{updated} comment(s) flagged.")
 
+    @admin.action(description="Unflag selected comments")
     def unflag_comments(self, request, queryset):
-        queryset.update(is_flagged=False)
-    unflag_comments.short_description = "Unflag selected comments"
+        updated = queryset.update(is_flagged=False)
+        self.message_user(request, f"{updated} comment(s) unflagged.")

@@ -1,162 +1,28 @@
-/* === Global Reset === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* === Body Styling === */
 body {
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f4f6f8, #e2e8f0);
-  color: #1e293b;
-  line-height: 1.6;
-  font-size: 16px;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 20px;
 }
-
-/* === Form Styling === */
-form {
-  max-width: 520px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
 }
-
-/* === Labels and Inputs === */
-label {
-  display: block;
-  margin-top: 18px;
-  font-weight: 600;
-  color: #0f172a;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="file"],
-textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 15px;
-  background-color: #f9fafb;
-  transition: border-color 0.3s ease;
-}
-
-input:focus,
-textarea:focus {
-  border-color: #38bdf8;
-  outline: none;
-}
-
-/* === Buttons === */
-button,
-input[type="submit"] {
-  width: 100%;
-  padding: 14px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  margin-top: 24px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover,
-input[type="submit"]:hover {
-  background-color: #1d4ed8;
-}
-
-/* === Links === */
-a {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* === Alert Messages === */
-.alert {
-  padding: 12px 18px;
-  border-radius: 6px;
-  margin-bottom: 24px;
-  font-weight: 500;
-}
-
-.alert-danger {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
-
-.alert-info {
-  background-color: #e0f2fe;
-  color: #0369a1;
-}
-
-/* === Dashboard Cards === */
-.dashboard-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.card {
-  background-color: #ffffff;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.card h3 {
-  margin-bottom: 12px;
-  color: #2563eb;
-  font-size: 20px;
-}
-
-.card a {
-  display: block;
-  margin-top: 10px;
-  color: #1d4ed8;
-}
-
-/* === Profile Image === */
 .profile-picture {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 18px;
-  box-shadow: 0 0 0 4px #38bdf8;
+    width: 100px;
+    border-radius: 50%;
 }
-
-/* === Responsive Layout === */
-@media (max-width: 768px) {
-  .dashboard-cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  form {
-    padding: 24px;
-  }
+form input, form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+button {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
 }

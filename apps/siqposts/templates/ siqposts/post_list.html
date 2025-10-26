@@ -1,21 +1,38 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Civic Posts</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h2>Civic Posts</h2>
-    {% for post in posts %}
-        <div class="card">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.content|truncatewords:30 }}</p>
-            <p><em>By {{ post.author.username }} on {{ post.created_at|date:"M d, Y" }}</em></p>
-            <a href="{% url 'post_detail' post.id %}">Read More</a>
-        </div>
-    {% empty %}
-        <p>No posts yet.</p>
-    {% endfor %}
+    <header>
+        <h1>Civic Posts</h1>
+    </header>
+
+    <main>
+        {% if posts %}
+            <section class="post-list">
+                {% for post in posts %}
+                    <article class="card">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.content|truncatewords:30 }}</p>
+                        <p class="meta">
+                            <em>By {{ post.author.username }} on {{ post.created_at|date:"M d, Y" }}</em>
+                        </p>
+                        <a href="{% url 'post_detail' post.id %}" class="read-more">Read More</a>
+                    </article>
+                {% endfor %}
+            </section>
+        {% else %}
+            <p>No posts yet. Be the first to contribute!</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ now|date:"Y" }} SIQNet</p>
+    </footer>
 </body>
 </html>

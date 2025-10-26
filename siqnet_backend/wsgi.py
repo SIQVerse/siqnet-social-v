@@ -1,5 +1,6 @@
 import os
 import sys
+import logging
 from django.core.wsgi import get_wsgi_application
 
 # ✅ Set default settings module
@@ -9,18 +10,21 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "siqnet_backend.settings")
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
-# ✅ Optional: Set environment flags for production
+# ✅ Set environment flags for production (can be overridden externally)
 os.environ.setdefault("SIQNET_ENV", "production")
 
-# ✅ Optional: Configure logging (can be expanded in settings.py)
+# ✅ Configure logging for production
 if os.environ.get("SIQNET_ENV") == "production":
-    import logging
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=[logging.StreamHandler()]
+    )
     logging.info("WSGI application starting in production mode.")
 
-# ✅ Optional: Security headers (if using WSGI middleware)
-# from django.middleware.security import SecurityMiddleware
-# application = SecurityMiddleware(get_wsgi_application())
-
-# ✅ Final WSGI application
+# ✅ Initialize WSGI application
 application = get_wsgi_application()
+
+# ✅ Optional: Add security middleware (uncomment if needed)
+# from django.middleware.security import SecurityMiddleware
+# application = SecurityMiddleware(application)

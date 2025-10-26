@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Badges</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <main class="container">
+        <h2>Badges Earned</h2>
+        {% if badges %}
+            <ul>
+                {% for badge in badges %}
+                    <li>
+                        {% if badge.badge.icon %}
+                            <img src="{{ badge.badge.icon.url }}" width="40" alt="{{ badge.badge.name }}">
+                        {% endif %}
+                        <strong>{{ badge.badge.name }}</strong>: {{ badge.badge.description }}
+                        <br><small>Awarded on {{ badge.awarded_at|date:"F j, Y" }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You haven’t earned any badges yet.</p>
+        {% endif %}
+        <a href="{% url 'profile' %}">Back to Profile</a>
+    </main>
+</body>
+</html>

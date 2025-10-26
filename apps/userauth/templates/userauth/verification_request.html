@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Verification</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <main class="container">
+        <h2>Request Account Verification</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Request</button>
+        </form>
+        <a href="{% url 'profile' %}">Back to Profile</a>
+    </main>
+</body>
+</html>

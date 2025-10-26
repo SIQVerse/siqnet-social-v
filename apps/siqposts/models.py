@@ -2,6 +2,10 @@ from django.db import models
 from django.conf import settings
 
 class CivicPost(models.Model):
+    """
+    Represents a civic engagement post which can be text, image, video, poll, or audio.
+    """
+
     POST_TYPES = [
         ('text', 'Text'),
         ('image', 'Image'),
@@ -26,7 +30,11 @@ class CivicPost(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_posts', blank=True)
+    likes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='liked_posts',
+        blank=True
+    )
     views = models.PositiveIntegerField(default=0)
     shares = models.PositiveIntegerField(default=0)
     tags = models.CharField(max_length=200, blank=True)  # comma-separated hashtags
@@ -45,14 +53,28 @@ class CivicPost(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Represents a comment on a CivicPost, with support for threaded replies.
+    """
+
     post = models.ForeignKey(CivicPost, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
+    parent = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name='replies'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_comments', blank=True)
+    likes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='liked_comments',
+        blank=True
+    )
     is_edited = models.BooleanField(default=False)
     is_flagged = models.BooleanField(default=False)
     is_hidden = models.BooleanField(default=False)
@@ -65,3 +87,32 @@ class Comment(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+
+
+class Poll(models.Model):
+    """
+    Represents a poll attached to a CivicPost.
+    """
+
+    post = models.OneToOneField(CivicPost, on_delete=models.CASCADE, related_name='poll')
+    question = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Poll: {self.question}"
+
+
+class PollOption(models.Model):
+    """
+    Represents an option within a poll.
+    """
+
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, related_name='options')
+    text = models.CharField(max_length=100)
+    votes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+
+    def __str__(self):
+        return self.text
+
+    def vote_count(self):
+        return self.votes.count()
