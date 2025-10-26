@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from rest_framework import viewsets, permissions
@@ -47,6 +47,6 @@ class CommentViewSet(viewsets.ModelViewSet):
             comment.likes.add(user)
         return Response({'likes': comment.likes.count()})
 
-# 📝 Django views (unchanged)
-# [Your original Django views remain intact below this section]
-# You can keep all the post_list_view, post_detail_view, etc. as-is
+# 📝 Django views
+def post_list_view(request):
+    return HttpResponse("SIQPosts list view is working!")
