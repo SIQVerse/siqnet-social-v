@@ -70,12 +70,18 @@ TEMPLATES = [
     },
 ]
 
-# 🗄️ PostgreSQL Database
+# 🗄️ Database
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', 'postgres://siqnet_user:siqnet_pass@localhost:5432/siqnet_db')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'siqnet_db',
+        'USER': 'siqnet_user',
+        'PASSWORD': 'siqnet_pass',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
+
 
 # 🔐 Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -135,7 +141,6 @@ REST_FRAMEWORK = {
     ),
 }
 
-# 🔐 JWT Settings
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
@@ -170,9 +175,9 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
 # 🛡️ Production Security Settings
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
@@ -182,15 +187,23 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # 📋 Logging
 LOG_DIR = BASE_DIR / 'logs'
-LOG_DIR.mkdir(exist_ok=True)
+if not LOG_DIR.exists():
+    LOG_DIR.mkdir()
 
 LOGGING = {
     'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': LOG_DIR / 'siqnet.log',
+            'formatter': 'verbose',
         },
     },
     'loggers': {

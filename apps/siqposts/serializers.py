@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import CivicPost, Comment, Poll, PollOption
 
+# 💬 Comment Serializer
 class CommentSerializer(serializers.ModelSerializer):
     author_username = serializers.ReadOnlyField(source='author.username')
 
@@ -9,6 +10,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['author', 'created_at', 'updated_at', 'likes']
 
+# 📝 CivicPost Serializer
 class CivicPostSerializer(serializers.ModelSerializer):
     author_username = serializers.ReadOnlyField(source='author.username')
     comments = CommentSerializer(many=True, read_only=True)
@@ -18,6 +20,7 @@ class CivicPostSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['author', 'created_at', 'updated_at', 'likes', 'views', 'shares']
 
+# 📊 Poll Option Serializer
 class PollOptionSerializer(serializers.ModelSerializer):
     vote_count = serializers.SerializerMethodField()
 
@@ -28,6 +31,7 @@ class PollOptionSerializer(serializers.ModelSerializer):
     def get_vote_count(self, obj):
         return obj.votes.count()
 
+# 📊 Poll Serializer
 class PollSerializer(serializers.ModelSerializer):
     options = PollOptionSerializer(many=True, read_only=True)
 

@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from .models import CivicPost, Comment
 from apps.notifications.models import Notification
 
+# 📢 Notify author when a new post is created
 @receiver(post_save, sender=CivicPost)
 def notify_new_post(sender, instance, created, **kwargs):
     if created:
@@ -12,6 +13,7 @@ def notify_new_post(sender, instance, created, **kwargs):
             type='post_created'
         )
 
+# 💬 Notify post author when someone comments
 @receiver(post_save, sender=Comment)
 def notify_new_comment(sender, instance, created, **kwargs):
     if created and instance.post.author != instance.author:

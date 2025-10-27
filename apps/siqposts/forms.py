@@ -5,12 +5,12 @@ from .models import CivicPost, Comment
 class CivicPostForm(forms.ModelForm):
     content = forms.CharField(
         label="What's happening?",
+        required=False,
         widget=forms.Textarea(attrs={
             'rows': 4,
             'placeholder': 'Share your civic thoughts...',
             'class': 'form-control'
-        }),
-        required=False
+        })
     )
 
     image = forms.ImageField(
@@ -34,7 +34,10 @@ class CivicPostForm(forms.ModelForm):
     tags = forms.CharField(
         label="Tags",
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g. environment, policy'})
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'e.g. environment, policy'
+        })
     )
 
     visibility = forms.ChoiceField(
@@ -65,8 +68,14 @@ class CivicPostForm(forms.ModelForm):
             'location'
         ]
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Post title'}),
-            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City, region, or coordinates'}),
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Post title'
+            }),
+            'location': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'City, region, or coordinates'
+            }),
         }
 
 # 💬 Comment Form for adding/editing comments
