@@ -19,12 +19,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required by Allauth
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
     'channels',
     'django_redis',
+    'allauth',  # Allauth core
+    'allauth.account',  # Email/password login
+    'allauth.socialaccount',  # Social login (optional)
     'apps.userauth.apps.UserAuthConfig',
     'apps.siqposts.apps.SiqPostsConfig',
     'apps.messaging.apps.MessagingConfig',
@@ -62,7 +66,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # Required by Allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -81,7 +85,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # 🔐 Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -109,9 +112,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'userauth.CustomUser'
 
 # 🔁 Authentication flow
-LOGIN_REDIRECT_URL = '/auth/profile/'
-LOGOUT_REDIRECT_URL = '/auth/login/'
-LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_URL = '/accounts/login/'
 
 # ✉️ SMTP Email Backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -184,6 +187,9 @@ SECURE_HSTS_PRELOAD = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# 🏷️ Django Sites Framework
+SITE_ID = 1
 
 # 📋 Logging
 LOG_DIR = BASE_DIR / 'logs'
