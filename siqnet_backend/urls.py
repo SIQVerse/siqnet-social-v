@@ -31,6 +31,7 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('auth/', include('apps.userauth.urls')),
+    path('accounts/', include('allauth.urls')),  # ✅ Enables /accounts/login/ and /accounts/signup/
     path('siqposts/', include('apps.siqposts.urls')),
     path('api/v1/', include('apps.api.urls')),
     path('api/v1/siqposts/', include('apps.siqposts.api_urls')),
