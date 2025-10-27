@@ -1,8 +1,12 @@
 import os
 
-env = os.environ.get('DJANGO_ENV', 'dev')
+# 🌍 Determine environment
+env = os.environ.get('DJANGO_ENV', 'dev').lower()
 
+# 🔁 Load appropriate settings module
 if env == 'prod':
-    from .prod import *
+    from .production import *
+elif env == 'dev':
+    from .development import *
 else:
-    from .dev import *
+    raise ValueError(f"Unknown DJANGO_ENV: {env}")

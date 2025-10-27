@@ -1,20 +1,22 @@
 import os
-import sys
 import django
-from channels.routing import get_default_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+from django.core.asgi import get_asgi_application
+import apps.messaging.routing
 
-# ✅ Set default settings module
+# 🌍 Set Django settings module
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "siqnet_backend.settings")
 
-# ✅ Add project root to sys.path for modular imports
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(PROJECT_ROOT, '..'))
-
-# ✅ Set environment flags for production (can be overridden externally)
-os.environ.setdefault("SIQNET_ENV", "production")
-
-# ✅ Initialize Django
+# 🧠 Initialize Django
 django.setup()
 
-# ✅ Load ASGI application (includes WebSocket routing)
-application = get_default_application()
+# 🚦 ASGI application with HTTP and WebSocket support
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter(
+            apps.messaging.routing.websocket_urlpatterns
+        )
+    ),
+})

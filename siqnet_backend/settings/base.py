@@ -2,12 +2,15 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
+# 📁 Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+# 🔐 Core security
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-dev-key')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
+# 📦 Installed apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,6 +35,7 @@ INSTALLED_APPS = [
     'apps.healthcheck',
 ]
 
+# 🧱 Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -43,10 +47,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# 🌐 Routing
 ROOT_URLCONF = 'siqnet_backend.urls'
 WSGI_APPLICATION = 'siqnet_backend.wsgi.application'
 ASGI_APPLICATION = 'siqnet_backend.routing.application'
 
+# 🧠 Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -63,9 +69,11 @@ TEMPLATES = [
     },
 ]
 
+# 👤 Custom user model
 AUTH_USER_MODEL = 'userauth.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# 📁 Static & Media
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -73,19 +81,27 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# 🌍 Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Africa/Lusaka'
 USE_I18N = True
 USE_TZ = True
 
+# 🔁 Authentication flow
 LOGIN_REDIRECT_URL = '/auth/profile/'
 LOGOUT_REDIRECT_URL = '/auth/login/'
 LOGIN_URL = '/auth/login/'
 
+# ✉️ Email backend (override in env-specific settings)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# 🔐 CORS
 CORS_ALLOW_ALL_ORIGINS = True
+
+# 🔔 Messages
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+# 🔐 JWT Authentication
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -111,6 +127,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+# 🔌 Channels + Redis
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -120,45 +137,6 @@ CHANNEL_LAYERS = {
     },
 }
 
+# ⚡ Redis Caching
 CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    }
-}
-
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs/siqnet.log',
-            'formatter': 'verbose',
-        },
-    },
-    'root': {
-        'handlers': ['console', 'file'],
-        'level': 'INFO',
-    },
-}
+    '
